@@ -1,0 +1,10 @@
+
+
+gDebug=0
+gTestCompileAtEveryStage=0
+gHaltOnError=1
+
+BUILD="$BASE/build"
+CLOVER="$BASE/CLOVER"
+ACPI="$CLOVER/ACPI"
+TOOLS="$BASE/tools"

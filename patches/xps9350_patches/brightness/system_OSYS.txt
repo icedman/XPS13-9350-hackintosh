@@ -1,0 +1,27 @@
+# Based on system_OSYS.txt by: RehabMan
+
+# Cause the DSDT to simulate "Linux" when running under "Darwin" (OS X).
+#
+# This can fix various DSDT related problems for code within the DSDT
+# that is conditional on the operating system version.
+#
+
+into_all method code_regex If\s+\([\\]?_OSI\s+\(\"Linux\"\)\) replace_matched begin If(LOr(_OSI("Darwin"),_OSI("Linux"))) end;
+
+# ACOS drives a few other things, including EC queries. It is set in OSID().
+# OSID() uses a list of aliases for OS names, whereas OSYS is set in
+# PCI0._INI() using the traditional names (fixed by the patch above).
+# dell engineering.. 
+
+# List of aliases in DSDT:
+#    Name (W98S, "Microsoft Windows")
+#    Name (NT5S, "Microsoft Windows NT")
+#    Name (WINM, "Microsoft WindowsME: Millennium Edition")
+#    Name (WXP, "Windows 2001")
+#    Name (WLG, "Windows 2006")
+#    Name (WIN7, "Windows 2009")
+#    Name (WIN8, "Windows 2012")
+#    Name (WN81, "Windows 2013")
+#    Name (LINX, "Linux")
+
+into_all method code_regex If\s+\([\\]?_OSI\s+\(LINX\)\) replace_matched begin If(LOr(_OSI("Darwin"),_OSI(LINX))) end;

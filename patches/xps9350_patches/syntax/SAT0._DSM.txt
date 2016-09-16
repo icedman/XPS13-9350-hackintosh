@@ -1,0 +1,14 @@
+# Specific to XPS 13 9350 - corrects disassembler error
+
+into method label _DSM parent_label SAT0 remove_entry;
+into device name_adr 0x00020000 insert
+begin
+Method (_DSM, 4, Serialized)\n
+{\n
+    If (PCIC (Arg0))\n
+    {\n
+        Return (PCID (Arg0, Arg1, Arg2, Arg3))\n
+    }\n
+    Return (Zero)\n
+}\n
+end;
