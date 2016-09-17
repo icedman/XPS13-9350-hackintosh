@@ -76,7 +76,6 @@ function _tidy_exec()
         # Using debug mode to output all the details.
         #
         _PRINT_MSG "DEBUG: $2"
-        echo $1
         $1
       else
         #
