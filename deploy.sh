@@ -44,8 +44,14 @@ function acpi_patching()
     # _tidy_exec "patch_acpi DSDT system "system_WAK2"" "Fix _WAK Arg0 v2"
     # _tidy_exec "patch_acpi DSDT system "system_IMEI"" "Add IMEI"
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_Mutex"" "Fix Non-zero Mutex"
-    _tidy_exec "patch_acpi DSDT xps9350_patches/brightness "system_OSYS"" "OS Check Fix"
-    # _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/audio "audio_HDEF-layout3.txt"" "Add audio Layout 1"
+    # _tidy_exec "patch_acpi DSDT xps9350_patches/brightness "system_OSYS"" "OS Check Fix"
+    _tidy_exec "patch_acpi DSDT xps9350_patches/brightness "system_OSYS_win8"" "OS Check Fix"
+
+    # _tidy_exec "perl -i -pe 's/HDA/HDEF/g' $BUILD/precompiled/DSDT.dsl" "rename HDA to HDEF"
+    _tidy_exec "patch_acpi DSDT xps9350_patches/audio "rename_HDAS-HDEF"" "rename HDA to HDEF"
+
+    _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/audio "audio_HDEF-layout3"" "Add audio Layout 1"
+
     #_tidy_exec "patch_acpi DSDT syscl "audio_B0D3_HDAU"" "Rename B0D3 to HDAU"
     # _tidy_exec "patch_acpi DSDT syscl "remove_glan"" "Remove GLAN device"
     # _tidy_exec "patch_acpi DSDT syscl "syscl_iGPU_MEM2"" "iGPU TPMX to MEM2"
@@ -99,10 +105,10 @@ function deploy_ACPI_Patches()
 
 function main()
 {
-    # acpi_patching
-    # deploy_ACPI_Patches
+    acpi_patching
+    deploy_ACPI_Patches
 
-    patch_apple_hda
+    # patch_apple_hda
 }
 
 #==================================== START =====================================
