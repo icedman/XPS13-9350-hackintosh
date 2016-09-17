@@ -1,0 +1,50 @@
+<dict>
+                <key>Name</key>
+                <string>AppleHDA</string>
+                <key>Comment</key>
+                <string>Expect 2 matches</string>
+                <key>Find</key>
+                <data>YQLsEA==</data>
+                <key>Replace</key>
+                <data>AAAAAA==</data>
+            </dict>
+            <dict>
+                <key>Name</key>
+                <string>AppleHDA</string>
+                <key>Comment</key>
+                <string>Expect 2 matches</string>
+                <key>Find</key>
+                <data>YgLsEA==</data>
+                <key>Replace</key>
+                <data>AAAAAA==</data>
+            </dict>
+            <dict>
+                <key>Name</key>
+                <string>AppleHDA</string>
+                <key>Comment</key>
+                <string>Expect 2 matches</string>
+                <key>Find</key>
+                <data>hQjsEA==</data>
+                <key>Replace</key>
+                <data>AAAAAA==</data>
+            </dict>
+            <dict>
+                <key>Name</key>
+                <string>AppleHDA</string>
+                <key>Comment</key>
+                <string>Expect 2 matches</string>
+                <key>Find</key>
+                <data>gxnUEQ==</data>
+                <key>Replace</key>
+                <data>AAAAAA==</data>
+            </dict>
+            <dict>
+                <key>Name</key>
+                <string>AppleHDA</string>
+                <key>Comment</key>
+                <string>Expect 2 matches</string>
+                <key>Find</key>
+                <data>hBnUEQ==</data>
+                <key>Replace</key>
+                <data>VgLsEA==</data>
+            </dict>
