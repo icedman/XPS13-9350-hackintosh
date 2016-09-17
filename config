@@ -1,7 +1,7 @@
 
 
-gDebug=1
-gTestCompileAtEveryStage=0
+gDebug=0
+gTestCompileAtEveryStage=1
 gHaltOnError=1
 
 AUDIO_CODEC=ALC256
