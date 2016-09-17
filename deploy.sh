@@ -6,6 +6,7 @@ source "$BASE/config"
 source "$BASE/scripts/_deploy.sh"
 source "$BASE/scripts/disassemble.sh"
 source "$BASE/scripts/compile.sh"
+source "$TOOLS/patch_hda/patch_hda.sh"
 
 function acpi_patching()
 {
@@ -36,13 +37,13 @@ function acpi_patching()
     # _tidy_exec "patch_acpi DSDT usb "usb_7-series"" "7-series/8-series USB"
     # _tidy_exec "patch_acpi DSDT usb "usb_prw_0x0d_xhc"" "Fix USB _PRW"
     #_tidy_exec "patch_acpi DSDT battery "battery_Acer-Aspire-E1-571"" "Acer Aspire E1-571"
-    # _tidy_exec "patch_acpi DSDT system "system_IRQ"" "IRQ Fix"
+    _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_IRQ"" "IRQ Fix"
     # _tidy_exec "patch_acpi DSDT system "system_SMBUS"" "SMBus Fix"
     # _tidy_exec "patch_acpi DSDT system "system_ADP1"" "AC Adapter Fix"
     # _tidy_exec "patch_acpi DSDT system "system_MCHC"" "Add MCHC"
     # _tidy_exec "patch_acpi DSDT system "system_WAK2"" "Fix _WAK Arg0 v2"
     # _tidy_exec "patch_acpi DSDT system "system_IMEI"" "Add IMEI"
-    # _tidy_exec "patch_acpi DSDT system "system_Mutex"" "Fix Non-zero Mutex"
+    _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_Mutex"" "Fix Non-zero Mutex"
     _tidy_exec "patch_acpi DSDT xps9350_patches/brightness "system_OSYS"" "OS Check Fix"
     # _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/audio "audio_HDEF-layout3.txt"" "Add audio Layout 1"
     #_tidy_exec "patch_acpi DSDT syscl "audio_B0D3_HDAU"" "Rename B0D3 to HDAU"
@@ -76,9 +77,11 @@ function acpi_patching()
     compile
 }
 
-function apple_hda()
+function patch_apple_hda()
 {
-    echo "todo!"
+    _PRINT_MSG "--->: ${BLUE}PatchHDA (${AUDIO_CODEC})${OFF}"
+
+    _tidy_exec "createAppleHDAInjector "$AUDIO_CODEC"" "build audio injector"
 }
 
 function ssdtGen()
@@ -96,9 +99,10 @@ function deploy_ACPI_Patches()
 
 function main()
 {
-    acpi_patching
+    # acpi_patching
+    # deploy_ACPI_Patches
 
-    deploy_ACPI_Patches
+    patch_apple_hda
 }
 
 #==================================== START =====================================

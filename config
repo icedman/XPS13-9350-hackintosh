@@ -1,9 +1,10 @@
 
 
-gDebug=0
+gDebug=1
 gTestCompileAtEveryStage=0
 gHaltOnError=1
 
+AUDIO_CODEC=ALC256
 BUILD="$BASE/build"
 CLOVER="$BASE/CLOVER"
 ACPI="$CLOVER/ACPI"
