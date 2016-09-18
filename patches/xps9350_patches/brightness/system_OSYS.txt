@@ -6,12 +6,13 @@
 # that is conditional on the operating system version.
 #
 
-into_all method code_regex If\s+\([\\]?_OSI\s+\(\"Linux\"\)\) replace_matched begin If(LOr(_OSI("Darwin"),_OSI("Linux"))) end;
+#into_all method code_regex If\s+\([\\]?_OSI\s+\(\"Linux\"\)\) replace_matched begin If(LOr(_OSI("Darwin"),_OSI("Linux"))) end;
+into_all method code_regex If\s+\([\\]?_OSI\s+\(\"Linux\"\)\) replace_matched begin If(LOr(_OSI("Darwin"),_OSI("Windows 12"))) end;
 
 # ACOS drives a few other things, including EC queries. It is set in OSID().
 # OSID() uses a list of aliases for OS names, whereas OSYS is set in
 # PCI0._INI() using the traditional names (fixed by the patch above).
-# dell engineering.. 
+# dell engineering..
 
 # List of aliases in DSDT:
 #    Name (W98S, "Microsoft Windows")
@@ -24,4 +25,5 @@ into_all method code_regex If\s+\([\\]?_OSI\s+\(\"Linux\"\)\) replace_matched be
 #    Name (WN81, "Windows 2013")
 #    Name (LINX, "Linux")
 
-into_all method code_regex If\s+\([\\]?_OSI\s+\(LINX\)\) replace_matched begin If(LOr(_OSI("Darwin"),_OSI(LINX))) end;
+#into_all method code_regex If\s+\([\\]?_OSI\s+\(LINX\)\) replace_matched begin If(LOr(_OSI("Darwin"),_OSI(LINX))) end;
+into_all method code_regex If\s+\([\\]?_OSI\s+\(LINX\)\) replace_matched begin If(LOr(_OSI("Darwin"),_OSI(WIN8))) end;
