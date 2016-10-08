@@ -3,8 +3,8 @@
 #set -x
 
 codec=ALC256
-unpatched=/System/Library/Extensions
-builddir=$BUILD
+unpatched=./
+builddir=./
 
 #./build
 
@@ -20,7 +20,7 @@ function createAppleHDAInjector()
     rm -R $builddir/AppleHDA_$1.kext/Contents/MacOS/AppleHDA
     rm $builddir/AppleHDA_$1.kext/Contents/version.plist
     ln -s /System/Library/Extensions/AppleHDA.kext/Contents/MacOS/AppleHDA $builddir/AppleHDA_$1.kext/Contents/MacOS/AppleHDA
-    cp $TOOLS/patch_hda/audio/Resources/layout/*.zlib $builddir/AppleHDA_$1.kext/Contents/Resources/
+    cp ./audio/Resources/layout/*.zlib $builddir/AppleHDA_$1.kext/Contents/Resources/
     plist=$builddir/AppleHDA_$1.kext/Contents/Info.plist
     replace=`/usr/libexec/plistbuddy -c "Print :NSHumanReadableCopyright" $plist | perl -pi -e 's/(\d*\.\d*)/9\1/'`
     /usr/libexec/plistbuddy -c "Set :NSHumanReadableCopyright '$replace'" $plist
@@ -38,9 +38,9 @@ function createAppleHDAInjector()
     /usr/libexec/plistbuddy -c "Delete ':IOKitPersonalities:HDA Hardware Config Resource:PostConstructionInitialization'" $plist
     /usr/libexec/plistbuddy -c "Add ':IOKitPersonalities:HDA Hardware Config Resource:IOProbeScore' integer" $plist
     /usr/libexec/plistbuddy -c "Set ':IOKitPersonalities:HDA Hardware Config Resource:IOProbeScore' 2000" $plist
-    /usr/libexec/plistbuddy -c "Merge $TOOLS/patch_hda/audio/Resources/ahhcd.plist ':IOKitPersonalities:HDA Hardware Config Resource'" $plist
+    /usr/libexec/plistbuddy -c "Merge ./audio/Resources/ahhcd.plist ':IOKitPersonalities:HDA Hardware Config Resource'" $plist
     echo " Done: $builddir/AppleHDA_$1.kext"
 }
 
-#rm -Rf $builddir/AppleHDA_$codec.kext
-#createAppleHDAInjector "$codec"
+rm -Rf $builddir/AppleHDA_$codec.kext
+createAppleHDAInjector "$codec"

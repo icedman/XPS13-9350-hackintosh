@@ -6,20 +6,19 @@ source "$BASE/config"
 source "$BASE/scripts/_deploy.sh"
 source "$BASE/scripts/disassemble.sh"
 source "$BASE/scripts/compile.sh"
-source "$TOOLS/patch_hda/patch_hda.sh"
 
 function acpi_patching()
 {
     disassemble
 
-    #just preserve files
-    ignore_acpi_file "SSDT-0"
+    # #just preserve files
+    # ignore_acpi_file "SSDT-0"
     ignore_acpi_file "SSDT-1"
-    ignore_acpi_file "SSDT-2"
-    ignore_acpi_file "SSDT-3"
-    ignore_acpi_file "SSDT-4"
-    ignore_acpi_file "SSDT-6"
-    ignore_acpi_file "SSDT-14"
+    # ignore_acpi_file "SSDT-2"
+    # ignore_acpi_file "SSDT-3"
+    # ignore_acpi_file "SSDT-4"
+    # ignore_acpi_file "SSDT-6"
+    # ignore_acpi_file "SSDT-14"
 
     test_compile_all
 
@@ -29,10 +28,13 @@ function acpi_patching()
     # DSDT Patches.
     #
     _PRINT_MSG "--->: ${BLUE}Patching DSDT.dsl${OFF}"
+
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/syntax "rename_DSM"" "remove all _DSM methods"
-    _tidy_exec "patch_acpi DSDT xps9350_patches/brightness "keyboard"" "brightness keys"
+    _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/misc "misc_Skylake-LPC"" "Skylake LPC"
+
     # _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/syntax "fix_PARSEOP_ZERO"" "Fix PARSEOP_ZERO"
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/syntax "fix_ADBG"" "Fix ADBG Error"
+
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/graphics "graphics_Rename-GFX0"" "Rename GFX0 to IGPU"
     # _tidy_exec "patch_acpi DSDT usb "usb_7-series"" "7-series/8-series USB"
     # _tidy_exec "patch_acpi DSDT usb "usb_prw_0x0d_xhc"" "Fix USB _PRW"
@@ -43,14 +45,22 @@ function acpi_patching()
     # _tidy_exec "patch_acpi DSDT system "system_MCHC"" "Add MCHC"
     # _tidy_exec "patch_acpi DSDT system "system_WAK2"" "Fix _WAK Arg0 v2"
     # _tidy_exec "patch_acpi DSDT system "system_IMEI"" "Add IMEI"
+    _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_RTC"" "RTC Fix"
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_Mutex"" "Fix Non-zero Mutex"
-    # _tidy_exec "patch_acpi DSDT xps9350_patches/brightness "system_OSYS"" "OS Check Fix"
-    _tidy_exec "patch_acpi DSDT xps9350_patches/brightness "system_OSYS_win8"" "OS Check Fix"
+    _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_Shutdown"" "Fix Shutdown"
+    _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_Shutdown2"" "Fix Shutdown2"
+    _tidy_exec "patch_acpi DSDT xps9350_patches/brightness "system_OSYS"" "OS Check Fix"
+    # _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_OSYS_win8"" "OS Check Fix"
 
     # _tidy_exec "perl -i -pe 's/HDA/HDEF/g' $BUILD/precompiled/DSDT.dsl" "rename HDA to HDEF"
     _tidy_exec "patch_acpi DSDT xps9350_patches/audio "rename_HDAS-HDEF"" "rename HDA to HDEF"
 
-    _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/audio "audio_HDEF-layout3"" "Add audio Layout 1"
+    # _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/audio "audio_HDEF-layout3"" "Add audio Layout 1"
+
+    # use layout-id 13 for cloverHDA
+    _tidy_exec "patch_acpi DSDT iceman "audio"" "Audio layout"
+    
+    # _tidy_exec "patch_acpi DSDT xps9350_patches/audio "audio"" "Audio layout"
 
     #_tidy_exec "patch_acpi DSDT syscl "audio_B0D3_HDAU"" "Rename B0D3 to HDAU"
     # _tidy_exec "patch_acpi DSDT syscl "remove_glan"" "Remove GLAN device"
@@ -58,9 +68,11 @@ function acpi_patching()
     # _tidy_exec "patch_acpi DSDT syscl "syscl_IMTR2TIMR"" "IMTR->TIMR, _T_x->T_x"
     # _tidy_exec "patch_acpi DSDT syscl "syscl_ALSD2ALS0"" "ALSD->ALS0"
 
-    test_compile "DSDT"
+    _tidy_exec "patch_acpi DSDT xps9350_patches/brightness "keyboard"" "brightness keys"
+    # _tidy_exec "patch_acpi DSDT iceman "keyboard"" "brightness keys"
 
-    #
+    #test_compile "DSDT"
+
     # SaSsdt Patches.
     #
     if [ $NoSaSsdt -eq 1 ]; then
@@ -74,7 +86,7 @@ function acpi_patching()
         _tidy_exec "patch_acpi ${SaSsdt} Laptop-DSDT-Patch/graphics "graphics_PNLF"" "Brightness fix (Skylake)"
         #_tidy_exec "patch_acpi ${SaSsdt} syscl "audio_B0D3_HDAU"" "Rename B0D3 to HDAU"
         #_tidy_exec "patch_acpi ${SaSsdt} syscl "audio_Intel_HD4600"" "Insert HDAU device"
-        test_compile "${SaSsdt}"
+        #test_compile "${SaSsdt}"
     fi
 
     #
@@ -99,16 +111,14 @@ function deploy_ACPI_Patches()
 {
     _PRINT_MSG "--->: ${BLUE}Deploy ACPI patches${OFF}"
 
-    _tidy_exec "cp $BASE/ssdts/* $ACPI/patched/" "copy prebuilt SSDTs"
-    _tidy_exec "cp $ACPI/patched/* /Volumes/EFI/EFI/CLOVER/ACPI/patched/" "copying files to CLOVER/ACPI/patched"
+    #_tidy_exec "cp $BASE/ssdts/*.aml $ACPI/patched/" "copy prebuilt SSDTs"
+    _tidy_exec "cp $ACPI/patched/*.aml /Volumes/EFI/EFI/CLOVER/ACPI/patched/" "copying files to CLOVER/ACPI/patched"
 }
 
 function main()
 {
     acpi_patching
     deploy_ACPI_Patches
-
-    # patch_apple_hda
 }
 
 #==================================== START =====================================
