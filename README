@@ -2,14 +2,15 @@ OSX on DELL XP13(9350)
 
 El Capitan 10.11.6
 
-# Installation
+Installation
+============
 
   Follow 'first laptop guide'
   
-## SMBIOS
+* SMBIOS
   use MacBook9,1 or iMac17,1
 
-## USB
+* USB
   http://www.tonymacx86.com/threads/guide-booting-the-os-x-installer-on-laptops-with-clover.148093/
   use CloverGrowerPro
 
@@ -21,19 +22,20 @@ El Capitan 10.11.6
   SATA-100-series-unsupported
   HackrNVMeFamily-10_11_6
 
-## Install OSX
+* Install OSX
  
   use CloverGrowerPro
   install CLOVER at installed partition
   
-# Post Install:
+Post Install:
+=============
 
-## Trackpad
+* Trackpad
   VoodooPS2Controller
   https://github.com/RehabMan/OS-X-Voodoo-PS2-Controller
   modify clitchy pointer
 
-## Battery/Power Management:
+* Battery/Power Management:
 
   sudo pmset -a hibernatemode 0
   sudo rm /var/vm/sleepimage
@@ -53,30 +55,33 @@ El Capitan 10.11.6
   use AppleIntelInfo to verify P-States
   https://github.com/Piker-Alpha/AppleIntelInfo
 
-## Skylake
+* Skylake
    http://www.tonymacx86.com/threads/10-11-0-10-11-3-skylake-starter-guide.179221/
    
    IOAPIC Fix
    kextstoPatch
    Skylake APIC fix, discovered by Pike R. Alpha
 
-# DSDT patching tools
+DSDT patching
+=============
 
+* Tools
   Clover F4 (gather)
   iasl
   maciasl
+  patchmatic
 
   disassemble with refs.txt > .dsl
   apply patch
   compile, save binary > .aml
 
-## Brightness/key brightness
+* Brightness/key brightness
 
   DSDT patching
   http://www.tonymacx86.com/threads/guide-patching-laptop-dsdt-ssdts.152573/
   http://www.tonymacx86.com/threads/dell-xps-13-9350-cant-install.184597/page-8
 
-## Audio
+* Audio
   use cloveHDA for ALC256, layout-id 13
   AppleHDA_256 follow the same guide, to the letter
 
@@ -84,14 +89,19 @@ El Capitan 10.11.6
   https://sourceforge.net/projects/voodoohda/files/
   VoodooHDA 2.8.9
 
-## USB, amulder's skylake guide guide
+* USB
+  follow amulder's skylake guide guide
 
 
-# Next: Ethernet
+Next: Ethernet
+==============
+
   can't do without buying DW1560
 
 
-# Checklist
+Checklist
+=========
+
   Power/Battery 
   Brightness
   Brightness Keys
@@ -107,7 +117,9 @@ El Capitan 10.11.6
   Geekbench
 
 
-# Credits
+Credits
+=======
+
 based of scripts from:
 https://github.com/syscl/M3800
 
