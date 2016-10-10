@@ -2,12 +2,117 @@ OSX on DELL XP13(9350)
 
 El Capitan 10.11.6
 
+# Installation
+
+  Follow 'first laptop guide'
+  
+## SMBIOS
+  use MacBook9,1 or iMac17,1
+
+## USB
+  http://www.tonymacx86.com/threads/guide-booting-the-os-x-installer-on-laptops-with-clover.148093/
+  use CloverGrowerPro
+
+  config.plist
+  https://github.com/RehabMan/OS-X-Clover-Laptop-Config
+
+  FakeSMC (CLOVER/kext/Other)
+  VoodooPS2Controller (CLOVER/kext/Other)
+  SATA-100-series-unsupported
+  HackrNVMeFamily-10_11_6
+
+## Install OSX
+ 
+  use CloverGrowerPro
+  install CLOVER at installed partition
+  
+# Post Install:
+
+## Trackpad
+  VoodooPS2Controller
+  https://github.com/RehabMan/OS-X-Voodoo-PS2-Controller
+  modify clitchy pointer
+
+## Battery/Power Management:
+
+  sudo pmset -a hibernatemode 0
+  sudo rm /var/vm/sleepimage
+  sudo mkdir /var/vm/sleepimage
+
+  also disable "Put hard disk to sleep whenever possible" in Energy settings
+
+  Piker's SSDPRGen
+  https://github.com/Piker-Alpha/ssdtPRGen.sh
+  remove _DSM method, recompile
+  copy ssdt to CLOVER/ACPI/patched
+  
+  also experiment frequencyEdit.sh
+
+  Kext:
+  ACPIBatteryManager (S/L/E)
+  use AppleIntelInfo to verify P-States
+  https://github.com/Piker-Alpha/AppleIntelInfo
+
+## Skylake
+   http://www.tonymacx86.com/threads/10-11-0-10-11-3-skylake-starter-guide.179221/
+   
+   IOAPIC Fix
+   kextstoPatch
+   Skylake APIC fix, discovered by Pike R. Alpha
+
+# DSDT patching tools
+
+  Clover F4 (gather)
+  iasl
+  maciasl
+
+  disassemble with refs.txt > .dsl
+  apply patch
+  compile, save binary > .aml
+
+## Brightness/key brightness
+
+  DSDT patching
+  http://www.tonymacx86.com/threads/guide-patching-laptop-dsdt-ssdts.152573/
+  http://www.tonymacx86.com/threads/dell-xps-13-9350-cant-install.184597/page-8
+
+## Audio
+  use cloveHDA for ALC256, layout-id 13
+  AppleHDA_256 follow the same guide, to the letter
+
+  Alternative: actually first choice
+  https://sourceforge.net/projects/voodoohda/files/
+  VoodooHDA 2.8.9
+
+## USB, amulder's skylake guide guide
+
+
+# Next: Ethernet
+  can't do without buying DW1560
+
+
+# Checklist
+  Power/Battery 
+  Brightness
+  Brightness Keys
+  Sleep/Wake
+  Sound/Mic
+  USB2/3/C
+  Wifi ********* waiting for DW11560
+  Bluetooth **** waiting..
+  Webcam ******* not working in 10.11.6; partially works in sierra
+  Reboot ******* sometimes hangs or takes too long
+
+  Intel Power Gadget
+  Geekbench
+
+
+# Credits
 based of scripts from:
 https://github.com/syscl/M3800
 
 based on builds of:
-vbo
-http://www.tonymacx86.com/threads/dell-xps-13-9350-cant-install.184597/page-8
+vbo ~ http://www.tonymacx86.com/threads/dell-xps-13-9350-cant-install.184597/page-8
 
-helicos
-http://www.tonymacx86.com/threads/dell-xps-13-9350-cant-install.184597/page-87
+helicos ~ http://www.tonymacx86.com/threads/dell-xps-13-9350-cant-install.184597/page-87
+
