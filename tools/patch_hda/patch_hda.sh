@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#set -x
+set -x
 
 codec=ALC256
 unpatched=./
