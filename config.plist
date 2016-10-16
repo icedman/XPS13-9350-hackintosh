@@ -20,7 +20,7 @@
 	<key>Boot</key>
 	<dict>
 		<key>Arguments</key>
-		<string>-v dart=0 </string>
+		<string>dart=0 </string>
 		<key>Log</key>
 		<false/>
 		<key>Timeout</key>
@@ -181,6 +181,18 @@
 		<array>
 			<dict>
 				<key>Comment</key>
+				<string>Enable TRIM for SSD</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Name</key>
+				<string>IOAHCIBlockStorage</string>
+				<key>Find</key>
+				<data>AEFQUExFIFNTRAA=</data>
+				<key>Replace</key>
+				<data>AAAAAAAAAAAAAAA=</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
 				<string>Skylake APIC fix, discovered by Pike R. Alpha</string>
 				<key>Find</key>
 				<data>wegQD7bw</data>
@@ -275,6 +287,10 @@
 	</dict>
 	<key>SMBIOS</key>
 	<dict>
+		<key>BiosVersion</key>
+		<string>MB91.88Z.0154.B00.1603041656</string>
+		<key>Board-ID</key>
+		<string>Mac-9AE82516C7C6B903</string>
 		<key>ProductName</key>
 		<string>MacBook9,1</string>
 	</dict>
