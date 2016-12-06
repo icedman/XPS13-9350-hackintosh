@@ -2,11 +2,16 @@ OSX on DELL XP13(9350)
 
 El Capitan 10.11.6
 
+UPDATE
+============
+Update to Sierra
+https://github.com/syscl/XPS9350-macOS
+
 Installation
 ============
 
   Follow 'first laptop guide'
-  
+
 * SMBIOS
   use MacBook9,1 or iMac17,1
 
@@ -23,10 +28,10 @@ Installation
   HackrNVMeFamily-10_11_6
 
 * Install OSX
- 
+
   use CloverGrowerPro
   install CLOVER at installed partition
-  
+
 Post Install:
 =============
 
@@ -47,7 +52,7 @@ Post Install:
   https://github.com/Piker-Alpha/ssdtPRGen.sh
   remove _DSM method, recompile
   copy ssdt to CLOVER/ACPI/patched
-  
+
   also experiment frequencyEdit.sh
 
   Kext:
@@ -57,7 +62,7 @@ Post Install:
 
 * Skylake
    http://www.tonymacx86.com/threads/10-11-0-10-11-3-skylake-starter-guide.179221/
-   
+
    IOAPIC Fix
    kextstoPatch
    Skylake APIC fix, discovered by Pike R. Alpha
@@ -102,7 +107,7 @@ Next: Ethernet
 Checklist
 =========
 
-  Power/Battery 
+  Power/Battery
   Brightness
   Brightness Keys
   Sleep/Wake
@@ -127,4 +132,3 @@ based on builds of:
 vbo ~ http://www.tonymacx86.com/threads/dell-xps-13-9350-cant-install.184597/page-8
 
 helicos ~ http://www.tonymacx86.com/threads/dell-xps-13-9350-cant-install.184597/page-87
-
