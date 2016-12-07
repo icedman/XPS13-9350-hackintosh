@@ -116,6 +116,27 @@
 						hfwETdgSevQ=
 						</data>
 					</array>
+					<key>ALI0</key>
+					<array>
+						<string>{ali</string>
+						<data>
+						BwECAA==
+						</data>
+					</array>
+					<key>ALRV</key>
+					<array>
+						<string>ui16</string>
+						<data>
+						AAE=
+						</data>
+					</array>
+					<key>ALV0</key>
+					<array>
+						<string>{alv</string>
+						<data>
+						ARAGdQEgALYO4A==
+						</data>
+					</array>
 					<key>FNum</key>
 					<array>
 						<string>ui8</string>
@@ -135,6 +156,13 @@
 						<string>{rev</string>
 						<data>
 						AQQKAAY=
+						</data>
+					</array>
+					<key>MSLD</key>
+					<array>
+						<string>ui8 </string>
+						<data>
+						AA==
 						</data>
 					</array>
 					<key>MSSD</key>
@@ -178,7 +206,14 @@
 					<array>
 						<string>{rev</string>
 						<data>
-						ATAPAAAD
+						AikPAAAk
+						</data>
+					</array>
+					<key>RMde</key>
+					<array>
+						<string>char</string>
+						<data>
+						QQ==
 						</data>
 					</array>
 					<key>RVBF</key>
@@ -224,7 +259,7 @@
 				<key>debug</key>
 				<false/>
 				<key>smc-compatible</key>
-				<string>smc-napa</string>
+				<string>smc-huronriver</string>
 				<key>trace</key>
 				<false/>
 			</dict>
