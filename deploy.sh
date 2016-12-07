@@ -40,17 +40,33 @@ function acpi_patching()
     # _tidy_exec "patch_acpi DSDT usb "usb_prw_0x0d_xhc"" "Fix USB _PRW"
     #_tidy_exec "patch_acpi DSDT battery "battery_Acer-Aspire-E1-571"" "Acer Aspire E1-571"
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_IRQ"" "IRQ Fix"
-    # _tidy_exec "patch_acpi DSDT system "system_SMBUS"" "SMBus Fix"
-    # _tidy_exec "patch_acpi DSDT system "system_ADP1"" "AC Adapter Fix"
-    # _tidy_exec "patch_acpi DSDT system "system_MCHC"" "Add MCHC"
-    # _tidy_exec "patch_acpi DSDT system "system_WAK2"" "Fix _WAK Arg0 v2"
-    # _tidy_exec "patch_acpi DSDT system "system_IMEI"" "Add IMEI"
+    _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_SMBUS"" "SMBus Fix"
+    _tidy_exec "patch_acpi DSDT system "system_ADP1"" "AC Adapter Fix"
+    _tidy_exec "patch_acpi DSDT system "system_MCHC"" "Add MCHC"
+    _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_WAK2"" "Fix _WAK Arg0 v2"
+    _tidy_exec "patch_acpi DSDT system "system_IMEI"" "Add IMEI"
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_RTC"" "RTC Fix"
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_Mutex"" "Fix Non-zero Mutex"
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_Shutdown"" "Fix Shutdown"
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_Shutdown2"" "Fix Shutdown2"
+
+    _tidy_exec "patch_acpi DSDT syscl "syscl_iGPU_MEM2"" "iGPU TPMX to MEM2"
+    _tidy_exec "patch_acpi DSDT syscl "syscl_IMTR2TIMR"" "IMTR->TIMR, _T_x->T_x"
+    # _tidy_exec "patch_acpi DSDT syscl "syscl_ALSD2ALS0"" "ALSD->ALS0"
+
+    #
+    # Modificate ACPI for macOS to load devices correctly
+    #
+    _tidy_exec "patch_acpi DSDT syscl "syscl_PPMCnPMCR"" "PPMC and PMCR combine together credit syscl"
+    _tidy_exec "patch_acpi DSDT syscl "syscl_DMAC"" "Insert DMAC(PNP0200)"
+    _tidy_exec "patch_acpi DSDT syscl "syscl_MATH"" "Make Device(MATH) load correctly in macOS"
+    _tidy_exec "patch_acpi DSDT syscl "syscl_SLPB"" "SBTN->SLPB with correct _STA 0x0B"
+
+
     _tidy_exec "patch_acpi DSDT xps9350_patches/brightness "system_OSYS"" "OS Check Fix"
     # _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_OSYS_win8"" "OS Check Fix"
+    # _tidy_exec "patch_acpi DSDT iceman "system_OSYS"" "OS Check Fix"
+
 
     # _tidy_exec "perl -i -pe 's/HDA/HDEF/g' $BUILD/precompiled/DSDT.dsl" "rename HDA to HDEF"
     _tidy_exec "patch_acpi DSDT xps9350_patches/audio "rename_HDAS-HDEF"" "rename HDA to HDEF"
@@ -59,7 +75,7 @@ function acpi_patching()
 
     # use layout-id 13 for cloverHDA
     _tidy_exec "patch_acpi DSDT iceman "audio"" "Audio layout"
-    
+
     # _tidy_exec "patch_acpi DSDT xps9350_patches/audio "audio"" "Audio layout"
 
     #_tidy_exec "patch_acpi DSDT syscl "audio_B0D3_HDAU"" "Rename B0D3 to HDAU"
@@ -68,8 +84,8 @@ function acpi_patching()
     # _tidy_exec "patch_acpi DSDT syscl "syscl_IMTR2TIMR"" "IMTR->TIMR, _T_x->T_x"
     # _tidy_exec "patch_acpi DSDT syscl "syscl_ALSD2ALS0"" "ALSD->ALS0"
 
-    _tidy_exec "patch_acpi DSDT xps9350_patches/brightness "keyboard"" "brightness keys"
-    # _tidy_exec "patch_acpi DSDT iceman "keyboard"" "brightness keys"
+    # _tidy_exec "patch_acpi DSDT xps9350_patches/brightness "keyboard"" "brightness keys"
+    _tidy_exec "patch_acpi DSDT iceman "keyboard"" "brightness keys"
 
     #test_compile "DSDT"
 
