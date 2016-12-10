@@ -1,6 +1,6 @@
 
 
-gDebug=0
+gDebug=1
 gTestCompileAtEveryStage=1
 gHaltOnError=1
 
