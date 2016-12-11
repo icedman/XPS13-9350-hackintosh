@@ -1,0 +1,5 @@
+# Rename references to B0D3 in DSDT
+# since it is renamed in GFX SSDT by patches/hdmi_audio.txt
+
+into definitionblock code_regex B0D3 replaceall_matched begin HDAU end;
+into method label _WAK code_regex B0D3 replaceall_matched begin HDAU end;

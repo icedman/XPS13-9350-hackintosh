@@ -1,0 +1,8 @@
+# Remove AMW0 (WMI) device -- so far, no use for it...
+into device label AMW0 remove_entry;
+
+# Remove all references to AMW0 (in _Qxx methods)
+# Store (0xE007, ^^^^AMW0.INF2)
+into_all all code_regex Store\s+\(([^,]*),\s+\^+AMW0[^)]*\) removeall_matched;
+# Notify (AMW0, 0xD0)
+into_all all code_regex Notify\s+\(AMW0,\s+[^)]*\) removeall_matched;

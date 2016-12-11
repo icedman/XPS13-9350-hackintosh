@@ -1,0 +1,6 @@
+# syntax fixes for dsdt.dsl
+into method label ADBG replace_content begin Return(0) end;
+into method label HRPR code_regex (OperationRegion.*)\\_GPE.MMTB\s+\(0x04\), replace_matched begin %1\\_GPE.MMTB, 0x04)\n end;
+into method label HRPR code_regex (Field\s+\(HRPE.*\n.*\n.*\n.*\})\) replace_matched begin %1 end;
+into definitionblock code_regex External\s+\(_SB_\.PCI0\.PEG0,\s+([^\)].*)\) remove_matched;
+into definitionblock code_regex External\s+\(_SB_\.PCI0\.PEG0\.PEGP,\s+([^\)].*)\) remove_matched;
