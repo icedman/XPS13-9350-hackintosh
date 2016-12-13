@@ -1,2 +1,0 @@
-#!/bin/sh
-diskutil list | grep -i "External" | sed -e "s| (external, physical):||" | xargs -I {} diskutil eject {}
