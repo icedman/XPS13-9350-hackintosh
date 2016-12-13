@@ -1,0 +1,51 @@
+#!/bin/sh
+#
+# This script aims to unmount all external devices automatically before sleep.
+#
+# Without this procedure, various computers with OS X/Mac OS X(even on a real Mac) suffer from "Disk not ejected properly"
+# issue when therere external devices plugged-in. Thats the reason why I created this script to fix this issue. (syscl/lighting/Yating Zhou)
+#
+# All credit to Bernhard Baehr (bernhard.baehr@gmx.de), without his great sleepwatcher dameon, this fix will not be created.
+#
+
+#
+# Added unmount Disk for "OS X" (c) syscl/lighting/Yating Zhou.
+#
+gMountPartition="/tmp/com.syscl.externalfix"
+gDisk=($(diskutil list | grep -i "External" | sed -e "s| (external, physical):||" -e "s|\/dev\/||"))
+
+for ((i=0; i<${#gDisk[@]}; ++i))
+do
+  gCurrent_Partitions=($(diskutil list ${gDisk[i]} |grep -o "disk[0-9]s[0-9]"))
+  for ((k=0; k<${#gCurrent_Partitions[@]}; ++k))
+  do
+    gConfirm_Mounted=$(diskutil info ${gCurrent_Partitions[k]} |grep -i Mounted |sed -e "s| Mounted:||" -e "s| ||g")
+    if [[ ${gConfirm_Mounted} == *"Yes"* ]];
+      then
+        echo ${gCurrent_Partitions[k]} >> ${gMountPartition}
+    fi
+  done
+done
+
+diskutil list | grep -i "External" | sed -e "s| (external, physical):||" | xargs -I {} diskutil eject {}
+
+#
+# Fix RTLWlanUSB sleep problem credit B1anker & syscl/lighting/Yating Zhou. @PCBeta.
+#
+
+gRTWlan_kext=
+gMAC_adr=$(ioreg -rc $gRTWlan_kext | sed -n "/IOMACAddress/ s/.*= <\(.*\)>.*/\1/ p")
+
+if [[ "$gMAC_adr" != 0 ]];
+  then
+    gRT_Config="/Applications/Wireless Network Utility.app"/${gMAC_adr}rfoff.rtl
+
+    if [ ! -f $gRT_Config ];
+      then
+        gRT_Config=$(ls "/Applications/Wireless Network Utility.app"/*rfoff.rtl)
+    fi
+
+    osascript -e 'quit app "Wireless Network Utility"'
+    echo "1" > "$gRT_Config"
+    open "/Applications/Wireless Network Utility.app"
+fi
