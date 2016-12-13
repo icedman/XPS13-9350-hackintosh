@@ -83,6 +83,12 @@ function acpi_patching()
     # _tidy_exec "patch_acpi DSDT xps9350_patches/brightness "keyboard"" "brightness keys"
     _tidy_exec "patch_acpi DSDT iceman "keyboard"" "brightness keys"
 
+    # _tidy_exec "patch_acpi DSDT debug "debug"" "ACPI debug"
+    # _tidy_exec "patch_acpi DSDT debug "instrument_LID"" "ACPI debug"
+    # _tidy_exec "patch_acpi DSDT debug "instrument_Qxx"" "ACPI debug"
+    # _tidy_exec "patch_acpi DSDT debug "instrument_Lxx"" "ACPI debug"
+    # _tidy_exec "patch_acpi DSDT debug "instrument_WAK_PTS"" "ACPI debug"
+
     #test_compile "DSDT"
 
     # SaSsdt Patches.

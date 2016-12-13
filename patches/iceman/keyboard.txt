@@ -1,11 +1,15 @@
+# ApplePS2
 into method label BRT6 replace_content
 begin
     If (LEqual (Arg0, One))\n
     {\n
+        Notify (LCD, 0x86)\n
         Notify (^^LPCB.PS2K, 0x10)\n
     }\n
     If (And (Arg0, 0x02))\n
     {\n
+    	Notify (LCD, 0x87)\n
         Notify (^^LPCB.PS2K, 0x20)\n
     }\n
 end;
+

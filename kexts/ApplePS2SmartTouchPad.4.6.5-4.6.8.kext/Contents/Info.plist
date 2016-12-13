@@ -1222,7 +1222,9 @@
 						<false/>
 					</dict>
 					<key>HIDTrackpadScrollAccelLevel</key>
-					<integer>3</integer>
+					<integer>2</integer>
+					<key>InertialScrollLevel</key>
+					<integer>2</integer>
 					<key>InertialScrollDelay</key>
 					<integer>8</integer>
 					<key>InertialScrollDepth</key>
