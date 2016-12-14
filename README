@@ -98,12 +98,6 @@ DSDT patching
   follow amulder's skylake guide guide
 
 
-Next: Ethernet
-==============
-
-  can't do without buying DW1560
-
-
 Checklist
 =========
 
@@ -113,10 +107,10 @@ Checklist
   Sleep/Wake
   Sound/Mic
   USB2/3/C
-  Wifi ********* waiting for DW11560
-  Bluetooth **** waiting..
-  Webcam ******* not working in 10.11.6; partially works in sierra
-  Reboot ******* sometimes hangs or takes too long
+  Wifi
+  Bluetooth
+  Webcam
+  Reboot
 
   Intel Power Gadget
   Geekbench
