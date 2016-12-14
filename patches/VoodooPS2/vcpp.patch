@@ -1,0 +1,13 @@
+--- VoodooPS2SynapticsTouchPad.cpp	2016-12-14 17:15:46.000000000 +0800
++++ VoodooPS2SynapticsTouchPad.cpp_	2016-12-14 17:15:16.000000000 +0800
+@@ -180,6 +180,10 @@
+ 	yrest=0;
+     lastbuttons=0;
+     
++    skippyThresh=0;
++    lastdx=0;
++    lastdy=0;
++    
+     // intialize state for secondary packets/extendedwmode
+     xrest2=0;
+     yrest2=0;
