@@ -1,6 +1,6 @@
---- VoodooPS2SynapticsTouchPad.cpp	2016-12-14 17:15:46.000000000 +0800
-+++ VoodooPS2SynapticsTouchPad.cpp_	2016-12-14 17:15:16.000000000 +0800
-@@ -180,6 +180,10 @@
+--- VoodooPS2SynapticsTouchPad.cpp	2016-12-14 17:29:02.000000000 +0800
++++ VoodooPS2SynapticsTouchPad.cpp_	2016-12-14 17:28:48.000000000 +0800
+@@ -174,6 +174,10 @@
  	yrest=0;
      lastbuttons=0;
      
@@ -11,3 +11,66 @@
      // intialize state for secondary packets/extendedwmode
      xrest2=0;
      yrest2=0;
+@@ -1564,7 +1568,7 @@
+                         inSwipeUp=1;
+                         inSwipeDown=0;
+                         ymoved = 0;
+-                        _device->dispatchKeyboardMessage(kPS2M_swipeUp, &now_abs);
++                        //_device->dispatchKeyboardMessage(kPS2M_swipeUp, &now_abs);
+                         break;
+                     }
+                     if (ymoved < -swipedy && !inSwipeDown)
+@@ -1572,7 +1576,7 @@
+                         inSwipeDown=1;
+                         inSwipeUp=0;
+                         ymoved = 0;
+-                        _device->dispatchKeyboardMessage(kPS2M_swipeDown, &now_abs);
++                        //_device->dispatchKeyboardMessage(kPS2M_swipeDown, &now_abs);
+                         break;
+                     }
+                     if (xmoved < -swipedx && !inSwipeRight)
+@@ -1701,6 +1705,7 @@
+         momentumscrollcurrent = 0;
+     }
+ 
++    
+     // switch modes, depending on input
+ 	if (touchmode==MODE_PREDRAG && isFingerTouch(z))
+     {
+@@ -1754,7 +1759,36 @@
+ 	if (touchmode==MODE_NOTOUCH && z>z_finger)
+ 		touchmode=MODE_MOVE;
+     
++    // pointer jumpy fix;
++    if (skippyThresh > 0) {
++        if (touchmode == MODE_VSCROLL)
++            skippyThresh = skippyThresh >> 1;
++        skippyThresh--;
++        if ((dx > 100 || dx < -100) && (dy > 100 || dy < -100)) {
++            dx = 0;
++            dy = 0;
++        }
++    }
++    if (lastdx == 0 && dx != 0) {
++        dx = 0;
++        lastdx = 1;
++    } else {
++        lastdx = dx;
++    }
++    if (lastdy == 0 && dy != 0) {
++        dy = 0;
++        lastdy = 1;
++    } else {
++        lastdy = dy;
++    }
++    if (dx == 0 && dy == 0) {
++        skippyThresh = 4;
++    } else {
++        skippyThresh--;
++    }
++    
+     // dispatch dx/dy and current button status
++    
+     dispatchRelativePointerEventX(dx / divisorx, dy / divisory, buttons, now_abs);
+     
+     // always save last seen position for calculating deltas later

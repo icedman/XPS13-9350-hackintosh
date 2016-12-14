@@ -1,5 +1,5 @@
---- VoodooPS2SynapticsTouchPad.h	2016-12-14 17:15:47.000000000 +0800
-+++ VoodooPS2SynapticsTouchPad.h_	2016-12-14 17:15:20.000000000 +0800
+--- VoodooPS2SynapticsTouchPad.h	2016-12-14 17:29:04.000000000 +0800
++++ VoodooPS2SynapticsTouchPad.h_	2016-12-14 17:28:52.000000000 +0800
 @@ -180,6 +180,10 @@
      IOCommandGate*      _cmdGate;
      IOACPIPlatformDevice*_provider;
@@ -8,6 +8,6 @@
 +    int lastdx;
 +    int lastdy;
 +    
-     bool ignore_ew_packets;
  	int z_finger;
  	int divisorx, divisory;
+ 	int ledge;
