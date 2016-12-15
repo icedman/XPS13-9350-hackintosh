@@ -1,13 +1,13 @@
---- VoodooPS2SynapticsTouchPad.h	2016-12-14 17:29:04.000000000 +0800
-+++ VoodooPS2SynapticsTouchPad.h_	2016-12-14 17:28:52.000000000 +0800
-@@ -180,6 +180,10 @@
+--- VoodooPS2SynapticsTouchPad.h	2016-12-15 09:00:26.000000000 +0800
++++ /Users/iceman/Developer/OS-X-Voodoo-PS2-Controller/VoodooPS2Trackpad/VoodooPS2SynapticsTouchPad.h	2016-12-15 09:00:54.000000000 +0800
+@@ -180,10 +180,6 @@
      IOCommandGate*      _cmdGate;
      IOACPIPlatformDevice*_provider;
      
-+    int skippyThresh;
-+    int lastdx;
-+    int lastdy;
-+    
+-    int skippyThresh;
+-    int lastdx;
+-    int lastdy;
+-    
  	int z_finger;
  	int divisorx, divisory;
  	int ledge;
