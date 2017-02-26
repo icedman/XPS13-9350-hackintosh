@@ -3,7 +3,7 @@
 set -x
 
 codec=ALC256
-unpatched=./
+unpatched=/System/Library/Extensions/
 builddir=./
 
 #./build
