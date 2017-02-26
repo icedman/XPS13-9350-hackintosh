@@ -38,19 +38,19 @@ function acpi_patching()
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/graphics "graphics_Rename-GFX0"" "Rename GFX0 to IGPU"
     # _tidy_exec "patch_acpi DSDT usb "usb_7-series"" "7-series/8-series USB"
     # _tidy_exec "patch_acpi DSDT usb "usb_prw_0x0d_xhc"" "Fix USB _PRW"
-    _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/usb "usb_prw_0x6d_xhc_skl"" "Fix USB _PRW"
+    # _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/usb "usb_prw_0x6d_xhc_skl"" "Fix USB _PRW"
     #_tidy_exec "patch_acpi DSDT battery "battery_Acer-Aspire-E1-571"" "Acer Aspire E1-571"
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_IRQ"" "IRQ Fix"
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_SMBUS"" "SMBus Fix"
-    _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_ADP1"" "AC Adapter Fix"
+    # _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_ADP1"" "AC Adapter Fix"
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_MCHC"" "Add MCHC"
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_WAK2"" "Fix _WAK Arg0 v2"
-    _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_IMEI"" "Add IMEI"
+    # _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_IMEI"" "Add IMEI"
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_Mutex"" "Fix Non-zero Mutex"
 
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_RTC"" "RTC Fix"
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_Shutdown"" "Fix Shutdown"
-    _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_Shutdown2"" "Fix Shutdown2"
+    # _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_Shutdown2"" "Fix Shutdown2"
 
     #
     # Modificate ACPI for macOS to load devices correctly
@@ -81,7 +81,10 @@ function acpi_patching()
     _tidy_exec "patch_acpi DSDT syscl "syscl_ALSD2ALS0"" "ALSD->ALS0"
 
     # _tidy_exec "patch_acpi DSDT xps9350_patches/brightness "keyboard"" "brightness keys"
-    _tidy_exec "patch_acpi DSDT iceman "keyboard"" "brightness keys"
+    # appleps2
+    # _tidy_exec "patch_acpi DSDT iceman "keyboard"" "brightness keys"
+    # voodoops2
+    _tidy_exec "patch_acpi DSDT iceman "keyboard2"" "brightness keys"
 
     # _tidy_exec "patch_acpi DSDT debug "debug"" "ACPI debug"
     # _tidy_exec "patch_acpi DSDT debug "instrument_LID"" "ACPI debug"
@@ -135,6 +138,24 @@ function deploy_ACPI_Patches()
 
 function main()
 {
+    #
+    # Get argument.
+    #
+    gArgv=$(echo "$@" | tr '[:lower:]' '[:upper:]')
+    if [[ "$gArgv" == *"-D"* || "$gArgv" == *"-DEBUG"* ]];
+      then
+        #
+        # Yes, we do need debug mode.
+        #
+        _PRINT_MSG "NOTE: Use ${BLUE}DEBUG${OFF} mode"
+        gDebug=0
+      else
+        #
+        # No, we need a clean output style.
+        #
+        gDebug=1
+    fi
+
     acpi_patching
     deploy_ACPI_Patches
 }
