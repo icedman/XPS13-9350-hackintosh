@@ -7,24 +7,3 @@ gMountPartition="/tmp/com.syscl.externalfix"
 
 cat ${gMountPartition} |xargs -I {} diskutil mount {}
 rm ${gMountPartition}
-
-#
-# Fix RTLWlanUSB sleep problem credit B1anker & syscl/lighting/Yating Zhou. @PCBeta.
-#
-
-gRTWlan_kext=
-gMAC_adr=$(ioreg -rc $gRTWlan_kext | sed -n "/IOMACAddress/ s/.*= <\(.*\)>.*/\1/ p")
-
-if [[ "$gMAC_adr" != 0 ]];
-  then
-    gRT_Config="/Applications/Wireless Network Utility.app"/${gMAC_adr}rfoff.rtl
-
-    if [ ! -f $gRT_Config ];
-      then
-        gRT_Config=$(ls "/Applications/Wireless Network Utility.app"/*rfoff.rtl)
-    fi
-
-    osascript -e 'quit app "Wireless Network Utility"'
-    echo "0" > "$gRT_Config"
-    open "/Applications/Wireless Network Utility.app"
-fi

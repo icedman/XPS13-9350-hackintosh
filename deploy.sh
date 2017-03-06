@@ -36,10 +36,7 @@ function acpi_patching()
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/syntax "fix_ADBG"" "Fix ADBG Error"
 
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/graphics "graphics_Rename-GFX0"" "Rename GFX0 to IGPU"
-    # _tidy_exec "patch_acpi DSDT usb "usb_7-series"" "7-series/8-series USB"
-    # _tidy_exec "patch_acpi DSDT usb "usb_prw_0x0d_xhc"" "Fix USB _PRW"
     # _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/usb "usb_prw_0x6d_xhc_skl"" "Fix USB _PRW"
-    #_tidy_exec "patch_acpi DSDT battery "battery_Acer-Aspire-E1-571"" "Acer Aspire E1-571"
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_IRQ"" "IRQ Fix"
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_SMBUS"" "SMBus Fix"
     # _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_ADP1"" "AC Adapter Fix"
@@ -74,23 +71,26 @@ function acpi_patching()
     # use layout-id 13 for cloverHDA
     _tidy_exec "patch_acpi DSDT iceman "audio"" "Audio layout"
 
-    # _tidy_exec "patch_acpi DSDT xps9350_patches/audio "audio"" "Audio layout"
-
     _tidy_exec "patch_acpi DSDT syscl "syscl_iGPU_MEM2"" "iGPU TPMX to MEM2"
     _tidy_exec "patch_acpi DSDT syscl "syscl_IMTR2TIMR"" "IMTR->TIMR, _T_x->T_x"
     _tidy_exec "patch_acpi DSDT syscl "syscl_ALSD2ALS0"" "ALSD->ALS0"
 
-    # _tidy_exec "patch_acpi DSDT xps9350_patches/brightness "keyboard"" "brightness keys"
-    # appleps2
-    # _tidy_exec "patch_acpi DSDT iceman "keyboard"" "brightness keys"
-    # voodoops2
-    _tidy_exec "patch_acpi DSDT iceman "keyboard2"" "brightness keys"
+    # _tidy_exec "patch_acpi DSDT iceman "keyboard_applesmart"" "brightness keys"
+    _tidy_exec "patch_acpi DSDT iceman "keyboard_voodoops2"" "brightness keys"
 
-    # _tidy_exec "patch_acpi DSDT debug "debug"" "ACPI debug"
-    # _tidy_exec "patch_acpi DSDT debug "instrument_LID"" "ACPI debug"
-    # _tidy_exec "patch_acpi DSDT debug "instrument_Qxx"" "ACPI debug"
-    # _tidy_exec "patch_acpi DSDT debug "instrument_Lxx"" "ACPI debug"
-    # _tidy_exec "patch_acpi DSDT debug "instrument_WAK_PTS"" "ACPI debug"
+    #_tidy_exec "patch_acpi DSDT debug "debug"" "ACPI debug"
+    #_tidy_exec "patch_acpi DSDT debug "instrument_LID"" "ACPI debug"
+    #_tidy_exec "patch_acpi DSDT debug "instrument_Qxx"" "ACPI debug"
+    #_tidy_exec "patch_acpi DSDT debug "instrument_Lxx"" "ACPI debug"
+    #_tidy_exec "patch_acpi DSDT debug "instrument_WAK_PTS"" "ACPI debug"
+    #perl -i -pe 's/ADBG \("HDA/\\rmdt\.p1\("HDA/g' $BUILD/precompiled/DSDT.dsl
+
+    # for what advantage? ans: (double press-- display sleep; quick press-- shutdown/sleep box)
+    # _tidy_exec "perl -i -pe 's/PBTN/PWRB/g' $BUILD/precompiled/DSDT.dsl" "rename PBTN to PWRB"
+    # i don't like it... produces garbled screen/artifacts
+    # default is better: quick doulbe press for display sleep; long press-- shutdown/sleep box)
+    # no artifacts
+    
 
     #test_compile "DSDT"
 
@@ -103,10 +103,9 @@ function acpi_patching()
         _PRINT_MSG "--->: ${BLUE}Patching ${SaSsdt}.dsl${OFF}"
         _tidy_exec "patch_acpi ${SaSsdt} Laptop-DSDT-Patch/syntax "remove_DSM"" "remove all _DSM methods"
         _tidy_exec "patch_acpi ${SaSsdt} Laptop-DSDT-Patch/graphics "graphics_Rename-GFX0"" "Rename GFX0 to IGPU"
-        #_tidy_exec "patch_acpi ${SaSsdt} syscl "syscl_Iris_Pro"" "Rename HD4600 to Iris Pro"
         _tidy_exec "patch_acpi ${SaSsdt} Laptop-DSDT-Patch/graphics "graphics_PNLF"" "Brightness fix (Skylake)"
         #_tidy_exec "patch_acpi ${SaSsdt} syscl "audio_B0D3_HDAU"" "Rename B0D3 to HDAU"
-        #_tidy_exec "patch_acpi ${SaSsdt} syscl "audio_Intel_HD4600"" "Insert HDAU device"
+        
         #test_compile "${SaSsdt}"
     fi
 
@@ -119,7 +118,7 @@ function acpi_patching()
 function patch_apple_hda()
 {
     _PRINT_MSG "--->: ${BLUE}PatchHDA (${AUDIO_CODEC})${OFF}"
-
+    
     _tidy_exec "createAppleHDAInjector "$AUDIO_CODEC"" "build audio injector"
 }
 

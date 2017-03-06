@@ -1,4 +1,0 @@
-External(_SB_.PCI0.PEG0.PEGP.SGPO, MethodObj, 2)
-External(_SB_.PCI0.LPCB.H_EC.ECWT, MethodObj, 2)
-External(_SB_.PCI0.LPCB.H_EC.ECRD, MethodObj, 1)
-External(_GPE.MMTB, MethodObj, 0)
