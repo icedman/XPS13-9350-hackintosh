@@ -197,6 +197,8 @@
 			<key>Inject</key>
 			<true/>
 		</dict>
+		<key>UseIntelHDMI</key>
+		<false/>
 		<key>AddProperties</key>
 		<array>
 			<dict>
@@ -205,9 +207,7 @@
 				<key>Key</key>
 				<string>AAPL00,PanelCycleDelay</string>
 				<key>Value</key>
-				<data>
-				+gAAAA==
-				</data>
+				<data>+gAAAA==</data>
 			</dict>
 			<dict>
 				<key>Device</key>
@@ -215,9 +215,7 @@
 				<key>Key</key>
 				<string>AAPL00,PanelPowerDown</string>
 				<key>Value</key>
-				<data>
-				PAAAAA==
-				</data>
+				<data>PAAAAA==</data>
 			</dict>
 			<dict>
 				<key>Device</key>
@@ -225,9 +223,7 @@
 				<key>Key</key>
 				<string>AAPL00,PanelPowerOff</string>
 				<key>Value</key>
-				<data>
-				EQAAAA==
-				</data>
+				<data>EQAAAA==</data>
 			</dict>
 			<dict>
 				<key>Device</key>
@@ -235,9 +231,7 @@
 				<key>Key</key>
 				<string>AAPL00,PanelPowerOn</string>
 				<key>Value</key>
-				<data>
-				GQEAAA==
-				</data>
+				<data>GQEAAA==</data>
 			</dict>
 			<dict>
 				<key>Device</key>
@@ -253,9 +247,7 @@
 				<key>Key</key>
 				<string>AAPL,Gfx324</string>
 				<key>Value</key>
-				<data>
-				AQAAAA==
-				</data>
+				<data>AQAAAA==</data>
 			</dict>
 			<dict>
 				<key>Device</key>
@@ -263,9 +255,7 @@
 				<key>Key</key>
 				<string>AAPL,GfxYTile</string>
 				<key>Value</key>
-				<data>
-				AQAAAA==
-				</data>
+				<data>AQAAAA==</data>
 			</dict>
 			<dict>
 				<key>Device</key>
@@ -273,9 +263,7 @@
 				<key>Key</key>
 				<string>graphic-options</string>
 				<key>Value</key>
-				<data>
-				DAAAAA==
-				</data>
+				<data>DAAAAA==</data>
 			</dict>
 			<dict>
 				<key>Device</key>
@@ -283,9 +271,7 @@
 				<key>Key</key>
 				<string>AAPL00,PanelPowerUp</string>
 				<key>Value</key>
-				<data>
-				MAAAAA==
-				</data>
+				<data>MAAAAA==</data>
 			</dict>
 		</array>
 	</dict>
@@ -394,83 +380,43 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>Enable lid wake for 0x19260002 credit syscl/lighting/Yating Zhou</string>
-				<key>Disabled</key>
-				<true/>
-				<key>Name</key>
-				<string>com.apple.driver.AppleIntelSKLGraphicsFramebuffer</string>
-				<key>Find</key>
-				<data>ChMDAAAABgAAAAAAAAAAAA==</data>
-				<key>Replace</key>
-				<data>DxMDAAAABgAAAAAAAAAAAA==</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>Enable lid wake for 0x19260004 credit syscl/lighting/Yating Zhou</string>
-				<key>Disabled</key>
-				<true/>
-				<key>Name</key>
-				<string>com.apple.driver.AppleIntelSKLGraphicsFramebuffer</string>
-				<key>Find</key>
-				<data>CgsDAAAHBgADAAAABAAAAA==</data>
-				<key>Replace</key>
-				<data>DwsDAAAHBgADAAAABAAAAA==</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
 				<string>Skylake APIC fix, discovered by Pike R. Alpha</string>
 				<key>Find</key>
-				<data>
-				wegQD7bw
-				</data>
+				<data>wegQD7bw</data>
 				<key>Name</key>
 				<string>AppleAPIC</string>
 				<key>Replace</key>
-				<data>
-				vhcAAACQ
-				</data>
+				<data>vhcAAACQ</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
 				<string>Boot Graphics Glitch (Credit denskop)</string>
 				<key>Find</key>
-				<data>
-				AQAAdSU=
-				</data>
+				<data>AQAAdSU=</data>
 				<key>Name</key>
 				<string>IOGraphicsFamily</string>
 				<key>Replace</key>
-				<data>
-				AQAA6yU=
-				</data>
+				<data>AQAA6yU=</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
 				<string>Enable USB3 post wake</string>
 				<key>Find</key>
-				<data>
-				xoDIAAAAAQ==
-				</data>
+				<data>xoDIAAAAAQ==</data>
 				<key>Name</key>
 				<string>#AppleUSBXHCI</string>
 				<key>Replace</key>
-				<data>
-				xoDIAAAAAA==
-				</data>
+				<data>xoDIAAAAAA==</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
 				<string>Enable TRIM for SSD</string>
 				<key>Find</key>
-				<data>
-				AEFQUExFIFNTRAA=
-				</data>
+				<data>AEFQUExFIFNTRAA=</data>
 				<key>Name</key>
 				<string>IOAHCIBlockStorage</string>
 				<key>Replace</key>
-				<data>
-				AAAAAAAAAAAAAAA=
-				</data>
+				<data>AAAAAAAAAAAAAAA=</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
@@ -478,85 +424,85 @@
 				<key>Disabled</key>
 				<false/>
 				<key>Find</key>
-				<data>
-				PQwKAAA=
-				</data>
+				<data>PQwKAAA=</data>
 				<key>Name</key>
 				<string>AppleHDAController</string>
 				<key>Replace</key>
-				<data>
-				PQwMAAA=
-				</data>
+				<data>PQwMAAA=</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
 				<string>Zeroing 210 codec</string>
 				<key>Find</key>
-				<data>
-				YQLsEA==
-				</data>
+				<data>YQLsEA==</data>
 				<key>Name</key>
 				<string>AppleHDA</string>
 				<key>Replace</key>
-				<data>
-				AAAAAA==
-				</data>
+				<data>AAAAAA==</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
 				<string>Zeroing 262 codec</string>
 				<key>Find</key>
-				<data>
-				YgLsEA==
-				</data>
+				<data>YgLsEA==</data>
 				<key>Name</key>
 				<string>AppleHDA</string>
 				<key>Replace</key>
-				<data>
-				AAAAAA==
-				</data>
+				<data>AAAAAA==</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
 				<string>Zeroing 885 codec</string>
 				<key>Find</key>
-				<data>
-				hQjsEA==
-				</data>
+				<data>hQjsEA==</data>
 				<key>Name</key>
 				<string>AppleHDA</string>
 				<key>Replace</key>
-				<data>
-				AAAAAA==
-				</data>
+				<data>AAAAAA==</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
 				<string>Zeroing 1983 codec</string>
 				<key>Find</key>
-				<data>
-				gxnUEQ==
-				</data>
+				<data>gxnUEQ==</data>
 				<key>Name</key>
 				<string>AppleHDA</string>
 				<key>Replace</key>
-				<data>
-				AAAAAA==
-				</data>
+				<data>AAAAAA==</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
 				<string>Patching 1984 with 10ec0256 codec</string>
 				<key>Find</key>
-				<data>
-				hBnUEQ==
-				</data>
+				<data>hBnUEQ==</data>
 				<key>Name</key>
 				<string>AppleHDA</string>
 				<key>Replace</key>
-				<data>
-				VgLsEA==
-				</data>
+				<data>VgLsEA==</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>AppleHDA anti-pop patch #1 (credit AppleALC)</string>
+				<key>MatchOS</key>
+				<string>10.11.x,10.12.x</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleHDA</string>
+				<key>Find</key>
+				<data>QcYGAEiLu2g=</data>
+				<key>Replace</key>
+				<data>QcYGAUiLu2g=</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>AppleHDA anti-pop patch #2 (credit AppleALC)</string>
+				<key>MatchOS</key>
+				<string>10.11.x,10.12.x</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleHDA</string>
+				<key>Find</key>
+				<data>QcaGQwEAAAA=</data>
+				<key>Replace</key>
+				<data>QcaGQwEAAAE=</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
@@ -564,15 +510,11 @@
 				<key>Disabled</key>
 				<false/>
 				<key>Find</key>
-				<data>
-				SIX/dEdIiwc=
-				</data>
+				<data>SIX/dEdIiwc=</data>
 				<key>Name</key>
 				<string>IOBluetoothFamily</string>
 				<key>Replace</key>
-				<data>
-				Qb4PAAAA60Q=
-				</data>
+				<data>Qb4PAAAA60Q=</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
@@ -580,28 +522,36 @@
 				<key>Disabled</key>
 				<false/>
 				<key>Find</key>
-				<data>
-				gflSqgAAdSk=
-				</data>
+				<data>gflSqgAAdSk=</data>
 				<key>Name</key>
 				<string>AirPortBrcm4360</string>
 				<key>Replace</key>
-				<data>
-				gflSqgAAZpA=
-				</data>
+				<data>gflSqgAAZpA=</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
 				<string>AirPortBrcm4360 - 5ghz lisai9 patch</string>
 				<key>Find</key>
+				<data>4183FCFF742C</data>
+				<key>Name</key>
+				<string>AirPortBrcm4360</string>
+				<key>Replace</key>
+				<data>66C7062361EB</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Patch CC to #a</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
 				<data>
-				4183FCFF742C
+				QYP8/3QsSA==
 				</data>
 				<key>Name</key>
 				<string>AirPortBrcm4360</string>
 				<key>Replace</key>
 				<data>
-				66C7062361EB
+				ZscGI2HrKw==
 				</data>
 			</dict>
 		</array>
