@@ -36,7 +36,7 @@ function acpi_patching()
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/syntax "fix_ADBG"" "Fix ADBG Error"
 
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/graphics "graphics_Rename-GFX0"" "Rename GFX0 to IGPU"
-    # _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/usb "usb_prw_0x6d_xhc_skl"" "Fix USB _PRW"
+    _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/usb "usb_prw_0x6d_xhc_skl"" "Fix USB _PRW"
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_IRQ"" "IRQ Fix"
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_SMBUS"" "SMBus Fix"
     # _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_ADP1"" "AC Adapter Fix"
