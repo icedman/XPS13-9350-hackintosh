@@ -27,4 +27,5 @@ do
   done
 done
 
-diskutil list | grep -i "External" | sed -e "s| (external, physical):||" | xargs -I {} diskutil eject {}
+diskutil list | grep -i "External" | sed -e "s| (external, physical):||" | xargs -I {} diskutil unmountDisk {}
+

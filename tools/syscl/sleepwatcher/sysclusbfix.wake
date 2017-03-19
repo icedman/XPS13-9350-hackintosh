@@ -7,3 +7,6 @@ gMountPartition="/tmp/com.syscl.externalfix"
 
 cat ${gMountPartition} |xargs -I {} diskutil mount {}
 rm ${gMountPartition}
+
+# kextunload /System/Library/Extensions/HWEnabler.kext
+# kextload /System/Library/Extensions/HWEnabler.kext
