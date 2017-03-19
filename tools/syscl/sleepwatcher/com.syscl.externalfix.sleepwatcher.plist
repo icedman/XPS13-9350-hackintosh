@@ -10,8 +10,8 @@
 	<array>
 		<string>/usr/local/sbin/sleepwatcher</string>
 		<string>-V</string>
-		<string>-s /etc/sysclusbfix.sleep</string>
-		<string>-w /etc/sysclusbfix.wake</string>
+		<string>-S /etc/sysclusbfix.sleep</string>
+		<string>-W /etc/sysclusbfix.wake</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>
