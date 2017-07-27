@@ -49,13 +49,16 @@ function acpi_patching()
     _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_Shutdown"" "Fix Shutdown"
     # _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/system "system_Shutdown2"" "Fix Shutdown2"
 
+
+    _tidy_exec "patch_acpi DSDT Laptop-DSDT-Patch/battery "battery_Dell-XPS-13"" "Dell XPS Battery"
+
     #
     # Modificate ACPI for macOS to load devices correctly
     #
-    _tidy_exec "patch_acpi DSDT syscl "syscl_PPMCnPMCR"" "PPMC and PMCR combine together credit syscl"
-    _tidy_exec "patch_acpi DSDT syscl "syscl_DMAC"" "Insert DMAC(PNP0200)"
-    _tidy_exec "patch_acpi DSDT syscl "syscl_MATH"" "Make Device(MATH) load correctly in macOS"
-    _tidy_exec "patch_acpi DSDT syscl "syscl_SLPB"" "SBTN->SLPB with correct _STA 0x0B"
+    #_tidy_exec "patch_acpi DSDT syscl "syscl_PPMCnPMCR"" "PPMC and PMCR combine together credit syscl"
+    #_tidy_exec "patch_acpi DSDT syscl "syscl_DMAC"" "Insert DMAC(PNP0200)"
+    #_tidy_exec "patch_acpi DSDT syscl "syscl_MATH"" "Make Device(MATH) load correctly in macOS"
+    #_tidy_exec "patch_acpi DSDT syscl "syscl_SLPB"" "SBTN->SLPB with correct _STA 0x0B"
 
 
     _tidy_exec "patch_acpi DSDT xps9350_patches/brightness "system_OSYS"" "OS Check Fix"
@@ -71,9 +74,9 @@ function acpi_patching()
     # use layout-id 13 for cloverHDA
     _tidy_exec "patch_acpi DSDT iceman "audio"" "Audio layout"
 
-    _tidy_exec "patch_acpi DSDT syscl "syscl_iGPU_MEM2"" "iGPU TPMX to MEM2"
-    _tidy_exec "patch_acpi DSDT syscl "syscl_IMTR2TIMR"" "IMTR->TIMR, _T_x->T_x"
-    _tidy_exec "patch_acpi DSDT syscl "syscl_ALSD2ALS0"" "ALSD->ALS0"
+    #_tidy_exec "patch_acpi DSDT syscl "syscl_iGPU_MEM2"" "iGPU TPMX to MEM2"
+    #_tidy_exec "patch_acpi DSDT syscl "syscl_IMTR2TIMR"" "IMTR->TIMR, _T_x->T_x"
+    #_tidy_exec "patch_acpi DSDT syscl "syscl_ALSD2ALS0"" "ALSD->ALS0"
 
     # _tidy_exec "patch_acpi DSDT iceman "keyboard_applesmart"" "brightness keys"
     _tidy_exec "patch_acpi DSDT iceman "keyboard_voodoops2"" "brightness keys"
